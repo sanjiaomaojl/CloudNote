@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.takia.cloud_note.dao.ShareDao">
+	<insert id="addShare" parameterType="cn.takia.cloud_note.entity.Share">
+		insert into cn_share(
+    		cn_share_id,
+			cn_share_title,
+			cn_share_body,
+			cn_note_id)
+    	values(#{cn_share_id},
+			#{cn_share_title},
+			#{cn_share_body},
+			#{cn_note_id})
+	</insert>
+	<select id="selectNote" parameterType="Map" resultType="cn.takia.cloud_note.entity.Share">
+		select * from cn_share where cn_share_title like #{title} limit #{begin},3
+	</select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.takia.cloud_note.dao.BookDao">
+	<select id="findByUserId" parameterType="string" resultType="cn.takia.cloud_note.entity.Book">
+		select * from cn_notebook 
+			where cn_user_id=#{userId}
+			order by cn_notebook_createtime desc
+	</select>
+	<insert id="save" parameterType="cn.takia.cloud_note.entity.Book">
+		INSERT INTO cn_notebook (
+			cn_notebook_id,
+			cn_user_id,
+			cn_notebook_type_id,
+			cn_notebook_name,
+			cn_notebook_desc,
+			cn_notebook_createtime) 
+		VALUES (#{cn_notebook_id},
+			#{cn_user_id},
+			#{cn_notebook_type_id},
+			#{cn_notebook_name},
+			#{cn_notebook_desc},
+			#{cn_notebook_createtime})
+	</insert>
+</mapper>

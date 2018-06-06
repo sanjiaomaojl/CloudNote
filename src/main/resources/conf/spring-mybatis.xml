@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-4.2.xsd
+        http://www.springframework.org/schema/util
+    	http://www.springframework.org/schema/util/spring-util.xsd">   
+	<util:properties id="config" location="classpath:conf/db.properties" />
+    <!-- 配置数据库连接参数及连接池 -->
+	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="#{config.driver}" />       
+    	<property name="url" value="#{config.url}" />       
+    	<property name="username" value="#{config.username}" />		
+		<property name="password" value="#{config.password}"/>			
+	</bean>
+	
+	<!-- 配置SqlSessionFactory -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dbcp"></property>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+	</bean>
+	
+	<!-- 配置mapper扫描 -->
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.takia.cloud_note.dao"></property>
+	</bean>	
+</beans>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.takia.cloud_note.dao.NoteDao">
+    <select id="findByBookId" parameterType="string" resultType="Map">
+    	select cn_note_id,cn_note_title 
+    	from cn_note where cn_notebook_id=#{bookId} 
+    	and cn_note_status_id='1'
+    </select>
+    <select id="findByNoteId" parameterType="string" resultType="cn.takia.cloud_note.entity.Note">
+    	select * from cn_note where cn_note_id=#{noteId}
+    </select>
+    <update id="updateNote" parameterType="cn.takia.cloud_note.entity.Note">
+    	update cn_note set 
+    		cn_note_title=#{cn_note_title},
+    		cn_note_body=#{cn_note_body},
+    		cn_note_last_modify_time=
+    		#{cn_note_last_modify_time} 
+    	where cn_note_id=#{cn_note_id}
+    </update>
+    <insert id="addNote" parameterType="cn.takia.cloud_note.entity.Note">
+    	insert into cn_note(
+    		cn_note_id,
+			cn_notebook_id,
+			cn_user_id,
+			cn_note_status_id,
+			cn_note_type_id,
+			cn_note_title,
+			cn_note_body,
+			cn_note_create_time,
+			cn_note_last_modify_time)
+    	values(#{cn_note_id},
+			#{cn_notebook_id},
+			#{cn_user_id},
+			#{cn_note_status_id},
+			#{cn_note_type_id},
+			#{cn_note_title},
+			#{cn_note_body},
+			#{cn_note_create_time},
+			#{cn_note_last_modify_time})
+    </insert>
+    <update id="deleteNote" parameterType="cn.takia.cloud_note.entity.Note">
+    	update cn_note set cn_note_status_id=2,
+    				cn_note_last_modify_time=
+    				#{cn_note_last_modify_time}  
+    		where cn_note_id=#{cn_note_id}
+    </update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
