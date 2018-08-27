@@ -24,6 +24,6 @@ MVC设计思想 <br>
 采用mysql数据库 <br>
 数据库的设计为:https://github.com/sanjiaomaojl/CloudNote/blob/master/cloud_note.sql <br>
 ## 运行
-可在Tomcat上运行该项目。
-初始页面为https://github.com/sanjiaomaojl/CloudNote/blob/master/src/main/webapp/log_in.html 可实现用户的登录注册。
-登录成功后，用户可实现创建、修改、删除等操作，所有操作简单便捷。
+可在Tomcat上运行该项目。<br>
+初始页面为https://github.com/sanjiaomaojl/CloudNote/blob/master/src/main/webapp/log_in.html 可实现用户的登录注册。<br>
+登录成功后，用户可实现创建、修改、删除等操作，所有操作简单便捷。<br>
